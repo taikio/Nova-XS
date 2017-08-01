@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Teste Nova XS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <style>
+        .error {
+            border-color: red;
+        }
+        
+        .success {
+            border-color: green;
+        }
+    </style>
+    <form name="formulario" method="post" action="#">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" required>
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" required>
+        <label for="telefone">Telefone</label>
+        <input type="text" name="telefone" id="telefone" required>
+        <button type="button" onclick="validaFormulario()">OK</button>
+    </form>
+
+    <script type="text/javascript">
+        function id(selector) {
+            return document.querySelector(selector);
+        }
+
+        function validaFormulario(form) {
+            var nome = id("#nome");
+            var email = id("#email");
+            var telefone = id("#telefone");
+
+            var patternName = /^[a-zA-Z ]+$/g;
+            var isMatchName = patternName.test(nome.value);
+            if (!isMatchName) {
+                alert("Preencha o campo nome corretamente");
+                nome.className = "error";
+                return;
+            } else {
+                nome.className = "success";
+            }
+            var patternEmail = /^[a-z]*[0-9]*\@[a-z]{4,15}\.([a-z]{2,3}|[a-z]{2,3}\.[a-z]{2})$/g;
+            var isMatchEmail = patternEmail.test(email.value);
+            console.log(isMatchEmail);
+            if (!isMatchEmail) {
+                alert("Preencha o campo e-mail corretamente");
+                email.className = "error";
+                return;
+            } else {
+                email.className = "success";
+            }
+
+            var patternFone = /^[0-9]+$/g
+            var isMatchFone = patternFone.test(telefone.value);
+            if (!isMatchFone) {
+                alert("O campo telefone é obrigatório e deve conter apenas números");
+                telefone.className = "error";
+                return;
+            } else {
+                telefone.className = "success";
+            }
+
+            alert("Formulário recebido com sucesso!");
+
+        }
+    </script>
+
+</body>
+
+</html>
